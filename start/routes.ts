@@ -49,8 +49,8 @@ Route.group(() => {
 
   // Route for customer
   Route.get('getAllItem', 'ItemsController.getAllItem')
-  // Route.post('storeCustomer', 'customersController.storeCustomer')
-  // Route.get('getCustomer/:id', 'customersController.getCustomer')
-  // Route.put('updateCustomer/:id', 'customersController.updateCustomer')
-  // Route.delete('deleteCustomer/:id', 'customersController.deleteCustomer')
+  Route.post('storeItem', 'ItemsController.storeItem')
+  // Route.get('getCustomer/:id', 'ItemsController.getCustomer')
+  // Route.put('updateCustomer/:id', 'ItemsController.updateCustomer')
+  Route.delete('deleteItem/:id', 'ItemsController.deleteItem')
 }).prefix('api/v1')

@@ -10,32 +10,22 @@ export default class ItemsController {
       msg: "get data successfully"
     }
   }
-  // public async storeProduct({request}: HttpContextContract) {
-  //   const productImage = request.file('productImage')
-  //   const product = new Product()
-  //   if(!productImage) {
-  //     return {
-  //       status: 400,
-  //       data: null,
-  //       msg: 'Please upload file'
-  //     }
-  //   }
+  public async storeItem({request}: HttpContextContract) {
+    const item = new Item()
 
-  //   await productImage.move(Application.tmpPath('upload'))
-  //   product.productName = request.input('productName') as string
-  //   product.unit = request.input('unit') as string
-  //   product.stock = request.input('stock') as number
-  //   product.price = request.input('price') as number
-  //   product.productImage = request.file('productImage')?.fileName as string
-  //   console.log(product)
-  //   await product.save()
+    item.transactionCodeSales = request.input('transactionCodeSales') as string
+    item.product = request.input('product') as string
+    item.qty = request.input('qty') as number
+    item.totalPrice = request.input('totalPrice') as number
+    item.paymentAmount = request.input('paymentAmount') as number
+    await item.save()
 
-  //   return {
-  //     status: 200,
-  //     data: product,
-  //     msg: 'Product has been saved'
-  //   }
-  // }
+    return {
+      status: 200,
+      data: item,
+      msg: 'Item has been saved'
+    }
+  }
   // public async getProduct({params}: HttpContextContract) {
   //   const id = params.id
 
@@ -67,15 +57,15 @@ export default class ItemsController {
   //     msg: 'Product has been updated'
   //   }
   // }
-  // public async deleteProduct({params}: HttpContextContract) {
-  //   const product = await Product.findByOrFail('id', params.id)
+  public async deleteItem({params}: HttpContextContract) {
+    const item = await Item.findByOrFail('id', params.id)
 
-  //   product.delete()
+    item.delete()
 
-  //   return { 
-  //     status: 200,
-  //     data: null,
-  //     msg: 'Product has been deleted'
-  //   }
-  // }
+    return { 
+      status: 200,
+      data: null,
+      msg: 'Item has been deleted'
+    }
+  }
 }
