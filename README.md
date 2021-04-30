@@ -2,7 +2,7 @@
 
 ``` bash
 # clone the repo
-$ git clone https://github.com/harimakbul/frontend-inventory
+$ git clone https://github.com/harimakbul/backend-repository
 
 # install app's dependencies
 $ npm install
