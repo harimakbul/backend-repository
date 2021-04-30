@@ -36,27 +36,20 @@ export default class ItemsController {
   //   }
   // }
 
-  // public async updateProduct({request, params}: HttpContextContract) {
-  //   const productImage = request.file('productImage')
-  //   let product = await Product.findByOrFail('id', params.id)
-  //   if(productImage) {
-  //     await productImage.move(Application.tmpPath('upload'))
-  //     product.productImage = request.file('productImage')?.fileName as string
-  //   }
+  public async updateItem({request, params}: HttpContextContract) {
+    let item = await Item.findByOrFail('id', params.id)
 
-  //   product.productName = request.input('productName')
-  //   product.unit = request.input('unit')
-  //   product.stock = request.input('stock')
-  //   product.price = request.input('price')
+    item.qty = request.input('qty')
+    item.totalPrice = (request.input('qty') as number) * request.input('price') as number
 
-  //   await product.save()
+    await item.save()
 
-  //   return {
-  //     status: 200,
-  //     data: product,
-  //     msg: 'Product has been updated'
-  //   }
-  // }
+    return {
+      status: 200,
+      data: item,
+      msg: 'Item has been updated'
+    }
+  }
   public async deleteItem({params}: HttpContextContract) {
     const item = await Item.findByOrFail('id', params.id)
 
